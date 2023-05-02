@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@500&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>다원중학교 3학년 1학기 성적 성취도 계산기</title>
+
+    <style>
+        ::placeholder{
+            font-size: 1px;
+        }
+    </style>
+</head>
+<body>
+    <div id="calculator">
+        <h1 class="title" style="margin-top:3rem;">다원중 3학년 1학기</h1>
+        <h1 class="title">중3 1학기 기말고사 성적 관리 계산기 대장(성취도 A 기준) <span style="font-size: 2rem;color:#4eed83;">Release 1.0</span></h1>
+        <p style="margin-bottom: 4rem;">Tip 아직 진행되지 않은 평가는 어림한 점수로 계산해봅니다.</p>
+        <div class="white">
+            <h2 style="margin-top: 1.5rem;">국어</h2>
+            <input type="text" id="subject-a-a" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"placeholder="심미적 체험을 글로 표현하기 수행평가 점수(/25)"style="font-size: 18px;">
+            <input type="text" id="subject-a-b" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="토론 개요서 작성하기 수행평가 점수(/25)"style="font-size: 18px;">
+            <button type="button" class="btn btn-success" id="subject-a" onclick="javascript:SubA('real-result');">결과보기</button>
+            <button type="button" class="btn btn-success" id="subject-a" onclick="javascript:SubA('other-result');">다른 결과보기</button>
+            <div id="subject-a-result" style="margin-bottom: 2.35rem; font-size: 1.2rem; margin-top: 0.3rem;">수행평가 점수가 위와 같을때, 기말 점수가 0점 이상이여야 성취도 0입니다.</div>
+            <h2>영어</h2>
+            <input type="text" id="subject-b-a" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="중간고사 점수(/100)"style="font-size: 18px;">
+            <input type="text" id="subject-b-b"onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="주제에 맞는 글쓰기 수행평가 점수(/20)"style="font-size: 18px;">
+            <br>
+            <input type="text" id="subject-b-c"onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="어휘 활용 작문 논술-1 수행평가 점수(/10)"style="font-size: 18px;">
+            <input type="text" id="subject-b-d"onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="어휘 활용 작문 논술-2 수행평가 점수(/10)"style="font-size: 18px;">
+            <input type="text" id="subject-b-e"onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="상황에 맞게 말하기 수행평가 점수(/10)"style="font-size: 18px;">
+            <br>
+            <button type="button" style="margin-top: 1rem;"class="btn btn-success" id="subject-b" onclick="javascript:SubB('real-result');">결과보기</button>
+            <button type="button" style="margin-top: 1rem;"class="btn btn-success" id="subject-b" onclick="javascript:SubB('other-result');">다른 결과보기</button>
+            <div id="subject-b-result" style="margin-bottom: 2.35rem;font-size: 1.2rem; margin-top: 0.3rem;">수행평가 점수가 위와 같을때, 기말 점수가 적어도 0점 이상이여야 성취도 0입니다.</div>
+            <h2>수학</h2>
+            <input type="text" id="subject-c-a"onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="중간고사 점수(/100)"style="font-size: 18px;">
+            <input type="text" id="subject-c-b"onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="실수와 연산 논술 수행평가 점수(/15)"style="font-size: 18px;">
+            <br>
+            <input type="text" id="subject-c-c"onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="인수분해와 이차방정식 논술 수행평가 점수(/15)"style="font-size: 18px;">
+            <input type="text" id="subject-c-d"onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="포트폴리오 수행평가 점수(/10)"style="font-size: 18px;">
+            <button type="button" class="btn btn-success" id="subject-c" onclick="javascript:SubC('real-result');">결과보기</button>
+            <button type="button" class="btn btn-success" id="subject-c" onclick="javascript:SubC('other-result');">다른 결과보기</button>
+            <div id="subject-c-result" style="margin-bottom: 2.35rem;font-size: 1.2rem; margin-top: 0.3rem;">수행평가 점수가 위와 같을때, 기말 점수가 적어도 0점 이상이여야 성취도 0입니다.</div>
+            <h2>역사</h2>
+            <input type="text" id="subject-d-a"onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="왕권 강화 정책 평가하기 수행평가 점수(/20)"style="font-size: 18px;">
+            <input type="text" id="subject-d-b"onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="삼국 통일 평가하기 수행평가 점수(/20)"style="font-size: 18px;">
+            <input type="text" id="subject-d-c"onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="씽킹 맵 만들기 수행평가 점수(/10)"style="font-size: 18px;">
+            <button type="button" class="btn btn-success" id="subject-d" onclick="javascript:SubD('real-result');">결과보기</button>
+            <button type="button" class="btn btn-success" id="subject-d" onclick="javascript:SubD('other-result');">다른 결과보기</button>
+            <div id="subject-d-result" style="margin-bottom: 2.35rem;font-size: 1.2rem; margin-top: 0.3rem;">수행평가 점수가 위와 같을때, 기말 점수가 적어도 0점 이상이여야 성취도 0입니다.</div>
+            <h2>과학</h2>
+            <input type="text" id="subject-e-a"onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="화학 반응 논술 수행평가 점수(/20)"style="font-size: 18px;">
+            <input type="text" id="subject-e-b"onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="자유 낙하 에너지 논술 수행평가 점수(/20)"style="font-size: 18px;">
+            <input type="text" id="subject-e-c"onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="구름 발생 실험 수행평가 점수(/10)"style="font-size: 18px;">
+            <button type="button" class="btn btn-success" id="subject-e" onclick="javascript:SubE('real-result');">결과보기</button>
+            <button type="button" class="btn btn-success" id="subject-e" onclick="javascript:SubE('other-result');">다른 결과보기</button>
+            <div id="subject-e-result" style="margin-bottom: 2.35rem;font-size: 1.2rem; margin-top: 0.3rem;">수행평가 점수가 위와 같을때, 기말 점수가 적어도 0점 이상이여야 성취도 0입니다.</div>
+            <h2>사회</h2>
+            <input type="text" id="subject-f-a"onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="(일반사회)금융 생활 계획서 수행평가 점수(/30)"style="font-size: 18px;">
+            <input type="text" id="subject-f-b"onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="(지리)포트폴리오 수행평가 점수(/20)"style="font-size: 18px;">
+            <button type="button" class="btn btn-success" id="subject-f" onclick="javascript:SubF('real-result');">결과보기</button>
+            <button type="button" class="btn btn-success" id="subject-f" onclick="javascript:SubF('other-result');">다른 결과보기</button>
+            <div id="subject-f-result" style="margin-bottom: 2.35rem;font-size: 1.2rem; margin-top: 0.3rem;">수행평가 점수가 위와 같을때, 기말 점수가 적어도 0점 이상이여야 성취도 0입니다.</div>
+            <h2>기술가정</h2>
+            <input type="text" id="subject-g-a"onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="(기술)수송 기술 및 에너지 논술 수행 점수(/20)"style="font-size: 18px;">
+            <input type="text" id="subject-g-b"onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="(기술)인터넷 개인 방송 수행 평가 점수(/10)"style="font-size: 18px;">
+            <input type="text" id="subject-g-c"onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="(가정)바람직한 의사소통 논술 수행 점수(/20)"style="font-size: 18px;">
+            <button type="button" class="btn btn-success" id="subject-g" onclick="javascript:SubG('real-result');">결과보기</button>
+            <button type="button" class="btn btn-success" id="subject-g" onclick="javascript:SubG('other-result');">다른 결과보기</button>
+            <div id="subject-g-result" style="margin-bottom: 2.35rem;font-size: 1.2rem; margin-top: 0.3rem;">수행평가 점수가 위와 같을때, 기말 점수가 적어도 0점 이상이여야 성취도 0입니다.</div>
+            <h2>일본어</h2>
+            <input type="text" id="subject-h-a"onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="쓰기 수행평가 점수(/20)"style="font-size: 18px;">
+            <input type="text" id="subject-h-b"onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="일본 지역 신문 수행평가 점수(/30)"style="font-size: 18px;">
+            <button type="button" class="btn btn-success" id="subject-h" onclick="javascript:SubH('real-result');">결과보기</button>
+            <button type="button" class="btn btn-success" id="subject-h" onclick="javascript:SubH('other-result');">다른 결과보기</button>
+            <div id="subject-h-result" style="margin-bottom: 2.35rem;font-size: 1.2rem; margin-top: 0.3rem;">수행평가 점수가 위와 같을때, 기말 점수가 적어도 0점 이상이여야 성취도 0입니다.</div>
+            <h2>중국어</h2>
+            <input type="text" id="subject-i-a"onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="어휘카드 읽기 수행평가 점수(/20)"style="font-size: 18px;">
+            <input type="text" id="subject-i-b"onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="중국 이해하기 주제 논술 수행평가 점수(/30)"style="font-size: 18px;">
+            <button type="button" class="btn btn-success" id="subject-i" onclick="javascript:SubI('real-result');">결과보기</button>
+            <button type="button" class="btn btn-success" id="subject-i" onclick="javascript:SubI('other-result');">다른 결과보기</button>
+            <div id="subject-i-result" style="margin-bottom: 2.35rem;font-size: 1.2rem; margin-top: 0.3rem;">수행평가 점수가 위와 같을때, 기말 점수가 적어도 0점 이상이여야 성취도 0입니다.</div>
+        </div>
+    
+
+        <script src="main.js"></script>
+    </div>
+</body>
+</html>

@@ -1,0 +1,42 @@
+*{
+    font-family: 'Jua', sans-serif;
+}
+.title{
+    font-size: 3.5rem;
+    text-align: center;
+    justify-content: center;
+    color: white;  
+}
+.white{
+    color: white;  
+    text-align: center;
+    justify-content: center;
+}
+input{
+    width:150px;
+    font-size: 0.75rem;
+}
+h2{
+    font-size: 2.67rem;
+}
+p{
+    color: #8f8f8f
+}
+#your-effort{
+    font-size: 3.5rem;
+    text-align: center;
+    justify-content: center;
+    color: white;  
+}
+a:link {
+    color : antiquewhite;
+  }
+  a:visited {
+    color : antiquewhite;
+  }
+  a:hover {
+    color : antiquewhite;
+  }
+  a:active {
+    color : antiquewhite;
+  }

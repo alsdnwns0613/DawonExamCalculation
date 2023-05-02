@@ -1,0 +1,11 @@
+body{
+    background-color: #1E1E1E;
+}
+#calculator{
+    color:white;
+    justify-content: center;
+    text-align: center;
+}
+*{
+    font-family: 'IBM Plex Sans KR', sans-serif;
+}
